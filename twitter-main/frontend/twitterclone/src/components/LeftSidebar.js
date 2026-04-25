@@ -35,7 +35,7 @@ const LeftSidebar = () => {
         <div className='w-[20%]'>
             <div>
                 <div>
-                    <img className='ml-5' width={"24px"} src="https://www.edigitalagency.com.au/wp-content/uploads/new-Twitter-logo-x-black-png-1200x1227.png" alt="twitter-logo" />
+                    <img className='ml-5' width={"24px"} src="https://upload.wikimedia.org/wikipedia/commons/7/71/Twitter_Logo_Blue_%282%29.png?_=20200828172412" alt="twitter-logo" />
                 </div>
                 <div className='my-4'>
                     <Link to="/" className='flex items-center my-2 px-4 py-2 hover:bg-gray-200 hover:cursor-pointer rounded-full'>
