@@ -24,6 +24,7 @@ export const createTweet = async (req, res) => {
         console.log(error);
     }
 }
+
 export const deleteTweet = async (req,res) => {
     try {
         const {id}  = req.params;
@@ -59,6 +60,7 @@ export const likeOrDislike = async (req,res) => {
         console.log(error);
     }
 };
+
 export const getAllTweets = async (req,res) => {
     // loggedInUser ka tweet + following user tweet
     try {
@@ -75,7 +77,8 @@ export const getAllTweets = async (req,res) => {
         console.log(error);
     }
 }
-export const getFollowingTweets = async (req,res) =>{
+
+export const getFollowingTweets = async (req,res) => {
     try {
         const id = req.params.id;
         const loggedInUser = await User.findById(id); 
@@ -89,4 +92,51 @@ export const getFollowingTweets = async (req,res) =>{
         console.log(error);
     }
 }
- 
+
+// ── NEW: ADD COMMENT CONTROLLER ──
+export const addComment = async (req, res) => {
+    try {
+        const tweetId = req.params.id;
+        const { text, id } = req.body; 
+
+        if (!text) {
+            return res.status(400).json({ message: "Comment cannot be empty.", success: false });
+        }
+
+        const tweet = await Tweet.findById(tweetId);
+        if (!tweet) {
+            return res.status(404).json({ message: "Tweet not found.", success: false });
+        }
+
+        tweet.comments.push({ userId: id, text });
+        await tweet.save();
+
+        return res.status(200).json({ message: "Comment added!", success: true, tweet });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal server error", success: false });
+    }
+};
+// ─────────────────────────────────
+// ── NEW: GET BOOKMARKED TWEETS ──
+export const getBookmarks = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findById(id); 
+        
+        if (!user) {
+            return res.status(404).json({ message: "User not found", success: false });
+        }
+
+        // Find all tweets whose _id exists inside the user's bookmarks array
+        const bookmarkedTweets = await Tweet.find({ _id: { $in: user.bookmarks } }).sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            tweets: bookmarkedTweets
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "Internal server error", success: false });
+    }
+}

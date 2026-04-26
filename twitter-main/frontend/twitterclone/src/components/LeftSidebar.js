@@ -36,14 +36,20 @@ const LeftSidebar = () => {
         <div className={`w-[20%] flex flex-col h-screen sticky top-0 ${dm ? 'bg-black text-white' : 'bg-white text-black'}`}>
             <div className='flex-1'>
                 <div className='mt-2 mb-1 ml-5'>
-                    <img width={"24px"} src="https://upload.wikimedia.org/wikipedia/commons/7/71/Twitter_Logo_Blue_%282%29.png" alt="twitter-logo" />
+                    <img width={"40px"} src="https://upload.wikimedia.org/wikipedia/commons/7/71/Twitter_Logo_Blue_%282%29.png" alt="twitter-logo" />
                 </div>
                 <div className='my-2'>
                     <Link to="/" className={navClass}><CiHome size="24px" /><h1 className='font-bold text-lg ml-2'>Home</h1></Link>
                     <div className={navClass}><CiHashtag size="24px" /><h1 className='font-bold text-lg ml-2'>Explore</h1></div>
                     <div className={navClass}><IoIosNotificationsOutline size="24px" /><h1 className='font-bold text-lg ml-2'>Notifications</h1></div>
                     <Link to={`/profile/${user?._id}`} className={navClass}><CiUser size="24px" /><h1 className='font-bold text-lg ml-2'>Profile</h1></Link>
-                    <div className={navClass}><CiBookmark size="24px" /><h1 className='font-bold text-lg ml-2'>Bookmarks</h1></div>
+                    
+                    {/* ── UPDATED BOOKMARKS LINK ── */}
+                    <Link to="/bookmarks" className={navClass}>
+                        <CiBookmark size="24px" />
+                        <h1 className='font-bold text-lg ml-2'>Bookmarks</h1>
+                    </Link>
+
                     <div onClick={logoutHandler} className={navClass}><AiOutlineLogout size="24px" /><h1 className='font-bold text-lg ml-2'>Logout</h1></div>
 
                     {/* More → Dark mode toggle */}

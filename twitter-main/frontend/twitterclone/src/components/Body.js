@@ -4,6 +4,7 @@ import Login from './Login';
 import Home from './Home';
 import Feed from './Feed';
 import Profile from './Profile';
+import Bookmarks from './Bookmarks'; // ← NEW IMPORT
 
 const Body = () => {
     const appRouter = createBrowserRouter([
@@ -18,6 +19,11 @@ const Body = () => {
                 {
                     path:"/profile/:id",
                     element:<Profile/>
+                },
+                // ── NEW ROUTE ──
+                {
+                    path:"/bookmarks",
+                    element:<Bookmarks/>
                 }
             ]
         },
@@ -33,4 +39,4 @@ const Body = () => {
     )
 }
 
-export default Body
+export default Body;

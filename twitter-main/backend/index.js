@@ -12,6 +12,17 @@ dotenv.config({
 databaseConnection();
 const app = express(); 
 
+// backend/index.js
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// backend/index.js
+app.use(cors({
+    origin: "http://localhost:3000", // Replace with your frontend URL
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 // middlewares
 app.use(express.urlencoded({
     extended:true

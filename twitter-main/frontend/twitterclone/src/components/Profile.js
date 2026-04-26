@@ -85,16 +85,21 @@ const Profile = () => {
                     }
                 </div>
 
+
                 {/* Avatar + Edit/Follow */}
-                <div className='flex items-end justify-between px-4 -mt-10 mb-2'>
-                    <div className='border-4 border-white dark:border-black rounded-full'>
+                {/* FIX 1: Added 'relative z-10' here to pull the entire row above the banner */}
+                <div className='relative z-10 flex items-end justify-between px-4 -mt-10 mb-2'>
+
+                    {/* FIX 2: Added 'bg-white dark:bg-black' so the gap behind the border blocks the banner */}
+                    <div className='border-4 border-white dark:border-black bg-white dark:bg-black rounded-full'>
                         <Avatar
                             src={profile?.profilePhoto || ""}
                             name={profile?.name}
-                            size="80"
+                            size="90"
                             round={true}
                         />
                     </div>
+
                     {isOwnProfile ? (
                         <button
                             onClick={() => setShowEditModal(true)}

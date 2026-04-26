@@ -6,7 +6,7 @@ const userSlice = createSlice({
         user:null,
         otherUsers:null,
         profile:null,
-        darkMode:false,   // ← NEW
+        darkMode:false,   
     },
     reducers:{
         getUser:(state,action)=>{
@@ -25,11 +25,22 @@ const userSlice = createSlice({
                 state.user.following.push(action.payload);
             }
         },
-        toggleDarkMode:(state)=>{   // ← NEW
+        toggleDarkMode:(state)=>{   
             state.darkMode = !state.darkMode;
+        },
+        // ── NEW: BOOKMARK REDUCER ──
+        bookmarkUpdate:(state,action)=>{
+            if(state.user.bookmarks.includes(action.payload)){
+                // Remove bookmark if it already exists
+                state.user.bookmarks = state.user.bookmarks.filter((itemId)=>itemId !== action.payload);
+            } else {
+                // Add bookmark
+                state.user.bookmarks.push(action.payload);
+            }
         }
     }
 });
 
-export const {getUser, getOtherUsers, getMyProfile, followingUpdate, toggleDarkMode} = userSlice.actions;
+// Make sure to export bookmarkUpdate here!
+export const {getUser, getOtherUsers, getMyProfile, followingUpdate, toggleDarkMode, bookmarkUpdate} = userSlice.actions;
 export default userSlice.reducer;
