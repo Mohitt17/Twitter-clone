@@ -17,7 +17,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // backend/index.js
 app.use(cors({
-    origin: "http://localhost:3000", // Replace with your frontend URL
+    origin: "https://twitter-clone-ly4v2zpv4-mohitt17s-projects.vercel.app/", // Replace with your frontend URL
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
@@ -30,7 +30,7 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin:"http://localhost:3000",
+    origin:"https://twitter-clone-ly4v2zpv4-mohitt17s-projects.vercel.app/",
     credentials:true
 }
 app.use(cors(corsOptions));
