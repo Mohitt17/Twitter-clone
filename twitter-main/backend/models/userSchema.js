@@ -19,6 +19,24 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    // ── NEW FIELDS FOR EDIT PROFILE ──
+    bio:{
+        type:String,
+        default:""
+    },
+    profilePhoto:{
+        type:String,
+        default:""
+    },
+    bannerPhoto:{
+        type:String,
+        default:""
+    },
+    website:{
+        type:String,
+        default:""
+    },
+    // ────────────────────────────────
     followers:{
         type:Array,
         default:[]
@@ -32,4 +50,5 @@ const userSchema = new mongoose.Schema({
         default:[]
     }
 },{timestamps:true});
+
 export const User = mongoose.model("User", userSchema);
